@@ -1,0 +1,28 @@
+﻿<Window 
+    x:Class="FaceBubbles.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FaceBubbles"
+    Title="Face Bubbles"
+        Closed="WindowClosed"
+        Height="768" Width="1024"
+        MouseWheel="mouseWheeled"
+    >
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="MediumGreyBrush" Color="#ff6e6e6e"/>
+        <SolidColorBrush x:Key="KinectPurpleBrush" Color="#ff52318f"/>
+        <SolidColorBrush x:Key="KinectBlueBrush" Color="#ff00BCF2"/>
+        <Style TargetType="{x:Type Image}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+        </Style>
+    </Window.Resources>
+    
+            <Grid Name="layoutGrid" Margin="10 0 10 10">
+                <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center">
+                    <Grid Name="MainGrid" Width="640" Height="480">
+                       <local:FaceTrackingViewer x:Name="faceTrackingViewer" />
+                    </Grid>
+                </Viewbox>
+            </Grid>
+</Window>
