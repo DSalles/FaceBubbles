@@ -76,7 +76,7 @@ namespace FaceBubbles
             KinectSensor oldSensor = kinectChangedEventArgs.OldSensor;
             KinectSensor newSensor = kinectChangedEventArgs.NewSensor;
             if (oldSensor != null)
-            {
+            {/*
                 oldSensor.AudioSource.Stop();
                 oldSensor.AllFramesReady -= KinectSensorOnAllFramesReady;
                 oldSensor.ColorStream.Disable();
@@ -85,7 +85,7 @@ namespace FaceBubbles
                 oldSensor.SkeletonStream.Disable();
                 oldSensor.SkeletonStream.EnableTrackingInNearRange = false;
                 oldSensor.SkeletonStream.TrackingMode = SkeletonTrackingMode.Default;
-            }
+           */ }
 
             if (newSensor != null)
             {      

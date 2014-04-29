@@ -25,14 +25,14 @@ namespace FaceBubbles
         SlimDX.DirectSound.SecondarySoundBuffer sBuffer;
         SlimDX.Multimedia.WaveFormat waveFormat = new SlimDX.Multimedia.WaveFormat();
         SlimDX.DirectSound.SoundBufferDescription bufferDescription;
-        int amountOfTimeToRecord = 1;
+        float amountOfTimeToRecord = .5f;
         private event RoutedEventHandler FinishedRecording;
      //   private const int AudioPollingInterval = 50;
      //   private const int SamplesPerMillisecond = 8;
      //   private const int BytesPerSample = 2;
        // private readonly byte[] audioBuffer = new byte[AudioPollingInterval * SamplesPerMillisecond * BytesPerSample];
         public Image faceImage = new Image();
-        BitmapImage image = new BitmapImage(new Uri("C:\\Users\\Diana\\Documents\\Games\\FaceBubbles\\FaceBubbles\\Images\\bubble.png"));
+        BitmapImage image = new BitmapImage(new Uri("C:\\Users\\diana_000\\Documents\\Github\\FaceBubbles\\FaceBubbles\\Images\\bubble.png"));
         double left = 0.0;
         double top = 450.0;        
         Random random;
@@ -70,7 +70,7 @@ namespace FaceBubbles
           bufferDescription = new SlimDX.DirectSound.SoundBufferDescription();
           bufferDescription.Format = waveFormat;
           bufferDescription.Flags = BufferFlags.ControlVolume;
-          bufferDescription.SizeInBytes = amountOfTimeToRecord *2* waveFormat.AverageBytesPerSecond;
+          bufferDescription.SizeInBytes = (int)(amountOfTimeToRecord *2* waveFormat.AverageBytesPerSecond);
           sBuffer = new SlimDX.DirectSound.SecondarySoundBuffer(device, bufferDescription);
           this.audioStream = audioStream;
             ///
@@ -81,7 +81,7 @@ namespace FaceBubbles
           effect = new Monochrome();
           circularVignette = new CircularVignette();
           random = new Random();
-          valueLifeSpan = random.Next(10000, 50000);
+          valueLifeSpan = random.Next(50000, 100000);
           left = random.NextDouble() * 1024 - 512;
           turns = (int)(random.NextDouble() * 100);
           this.expired = false;
@@ -109,7 +109,7 @@ namespace FaceBubbles
 
         private void Play()
         {
-                sBuffer.Volume = -5000;
+                sBuffer.Volume = -4000;
                 sBuffer.Play(0, PlayFlags.Looping);            
         }
 
@@ -123,7 +123,7 @@ namespace FaceBubbles
 
        private void RecordAudio(object foo)
        {
-           var recordingLength = amountOfTimeToRecord * 2 * 16000;
+           var recordingLength = (int)(amountOfTimeToRecord * 2 * 16000);
            byte[] buffer = new byte[1024];
            using (MemoryStream inputStream = new MemoryStream())
            {
